@@ -33,6 +33,14 @@
     --ring: 45 100% 60%;
 
     --radius: 0.5rem;
+
+    /* Custom gradient card colors */
+    --card-gold-start: 255, 215, 0;
+    --card-gold-end: 255, 140, 0;
+    --card-red-start: 220, 38, 38;
+    --card-red-end: 153, 27, 27;
+    --card-dark-start: 17, 24, 39;
+    --card-dark-end: 3, 7, 18;
   }
 
   /* Add reduced motion classes */
@@ -42,7 +50,9 @@
   .prefers-reduced-motion .animate-gradient,
   .prefers-reduced-motion .flowing-gradient,
   .prefers-reduced-motion .flowing-gradient::before,
-  .prefers-reduced-motion .flowing-gradient::after {
+  .prefers-reduced-motion .flowing-gradient::after,
+  .prefers-reduced-motion .animated-card-bg::before,
+  .prefers-reduced-motion .animated-card-bg::after {
     animation: none !important;
     transition: none !important;
   }
@@ -52,17 +62,38 @@
   * {
     @apply border-border;
   }
+
+  html {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    min-height: 100vh;
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
   }
 
+  /* Remove the duplicate scrollbars */
+  #__next,
+  main,
+  div[data-nextjs-scroll-focus-boundary] {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
   /* Ensure footer sticks to bottom */
   main {
-    flex: 1 0 auto;
+    flex: 1 0;
   }
 
   footer {
@@ -121,8 +152,7 @@
   /* Flowing gradient background for hero section */
   .flowing-gradient {
     position: relative;
-    /*background: linear-gradient(to bottom, #050505, #030311, #050518);*/
-    background: linear-gradient(to bottom, #5c3601, #030311, #050534);
+    background: linear-gradient(to bottom, #4b3b00, #030311, #04042e);
     overflow: hidden;
   }
 
@@ -190,7 +220,7 @@
   }
 
   .dark-orb.blue {
-    background: radial-gradient(circle at center, rgba(30, 58, 138, 0.3) 0%, rgba(15, 23, 42, 0.1) 70%);
+    background: radial-gradient(circle at center, rgba(30, 58, 138, 0.3) 0%, rgba(15, 23, 42,.1) 70%);
     animation: orb-float-2 25s ease-in-out infinite;
   }
 
@@ -218,6 +248,136 @@
     25% { transform: translate(7%, -4%); }
     50% { transform: translate(3%, -8%); }
     75% { transform: translate(9%, -2%); }
+  }
+
+  /* Card gradient animations for overview section */
+  .animated-card-bg {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .animated-card-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      125deg,
+      rgba(var(--card-gold-start), 0.15) 0%,
+      rgba(var(--card-red-start), 0.1) 25%,
+      rgba(var(--card-dark-start), 0.15) 50%,
+      rgba(var(--card-red-start), 0.1) 75%,
+      rgba(var(--card-gold-start), 0.15) 100%
+    );
+    background-size: 400% 400%;
+    animation: cardGradient 15s ease infinite;
+    z-index: -1;
+    opacity: 0.9;
+    transition: all 0.5s ease;
+  }
+
+  .animated-card-bg:hover::before {
+    opacity: 1;
+    background: linear-gradient(
+      125deg,
+      rgba(var(--card-gold-start), 0.25) 0%,
+      rgba(var(--card-red-start), 0.2) 25%,
+      rgba(var(--card-dark-start), 0.2) 50%,
+      rgba(var(--card-red-start), 0.2) 75%,
+      rgba(var(--card-gold-start), 0.25) 100%
+    );
+    animation: cardGradient 8s ease infinite;
+  }
+
+  .animated-card-bg::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at bottom right,
+      rgba(var(--card-gold-start), 0.15) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: -1;
+  }
+
+  .animated-card-bg:hover::after {
+    opacity: 1;
+  }
+
+  @keyframes cardGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Card variant classes */
+  .card-variant-1::before {
+    background: linear-gradient(
+      125deg,
+      rgba(var(--card-gold-start), 0.18) 0%,
+      rgba(var(--card-red-start), 0.08) 50%,
+      rgba(var(--card-gold-start), 0.18) 100%
+    );
+  }
+
+  .card-variant-1:hover::before {
+    background: linear-gradient(
+      125deg,
+      rgba(var(--card-gold-start), 0.28) 0%,
+      rgba(var(--card-red-start), 0.18) 50%,
+      rgba(var(--card-gold-start), 0.28) 100%
+    );
+  }
+
+  .card-variant-2::before {
+    background: linear-gradient(
+      125deg,
+      rgba(var(--card-red-start), 0.15) 0%,
+      rgba(var(--card-gold-start), 0.15) 50%,
+      rgba(var(--card-red-start), 0.15) 100%
+    );
+  }
+
+  .card-variant-2:hover::before {
+    background: linear-gradient(
+      125deg,
+      rgba(var(--card-red-start), 0.25) 0%,
+      rgba(var(--card-gold-start), 0.25) 50%,
+      rgba(var(--card-red-start), 0.25) 100%
+    );
+  }
+
+  .card-variant-3::before {
+    background: linear-gradient(
+      125deg,
+      rgba(var(--card-dark-start), 0.15) 0%,
+      rgba(var(--card-gold-start), 0.12) 50%,
+      rgba(var(--card-dark-start), 0.15) 100%
+    );
+  }
+
+  .card-variant-3:hover::before {
+    background: linear-gradient(
+      125deg,
+      rgba(var(--card-dark-start), 0.2) 0%,
+      rgba(var(--card-gold-start), 0.22) 50%,
+      rgba(var(--card-dark-start), 0.2) 100%
+    );
   }
 
   .border-glow {

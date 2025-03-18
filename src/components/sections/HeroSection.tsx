@@ -103,24 +103,7 @@ export default function HeroSection() {
           </div>
 
           {/* Stats - simplified animation */}
-          <motion.div
-            {...containerAnimation}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="grid grid-cols-3 gap-4 mt-8 max-w-md border-t border-white/20 pt-6 backdrop-blur-sm"
-          >
-            <div className="text-center p-3 border border-white/10 rounded-lg">
-              <p className="text-3xl font-bold text-gold-500">15+</p>
-              <p className="text-white text-sm">Destinations</p>
-            </div>
-            <div className="text-center p-3 border border-white/10 rounded-lg">
-              <p className="text-3xl font-bold text-gold-500">30+</p>
-              <p className="text-white text-sm">Experiences</p>
-            </div>
-            <div className="text-center p-3 border border-white/10 rounded-lg">
-              <p className="text-3xl font-bold text-gold-500">98%</p>
-              <p className="text-white text-sm">Satisfaction</p>
-            </div>
-          </motion.div>
+      
         </motion.div>
 
         {/* Right side - Simple Meditation Image with simplified animation */}

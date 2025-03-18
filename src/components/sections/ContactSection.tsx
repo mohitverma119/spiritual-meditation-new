@@ -13,8 +13,8 @@ export default function ContactSection() {
     >
       {/* Simple background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-black-950 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black-950 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-black-600 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black-700 to-transparent" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

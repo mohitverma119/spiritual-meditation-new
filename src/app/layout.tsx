@@ -1,54 +1,50 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Wild World Wanderers | Transformative Nature Journeys",
-  description: "Experience transformative journeys in the wild beauty of Kashmir, guided by ancient wisdom and spiritual practices. Reconnect with nature and yourself.",
-  keywords: [
-    "wild world wanderers",
-    "kashmir spiritual journeys",
-    "transformative travel",
-    "spiritual awakening",
-    "nature journeys",
-    "andrew harvey",
-    "wisdom teachings",
-    "sacred landscapes",
-    "spiritual retreats",
-    "inner healing"
-  ],
+  title: "Kashmir's Spiritual Meditation Journeys | Wild World Wanderers",
+  description:
+    "Discover transformative spiritual meditation journeys in the mystical beauty of Kashmir. Guided retreats and experiences for inner healing and awakening.",
+  keywords:
+    "Kashmir meditation, spiritual retreats, meditation journeys, sacred travel, Kashmir spiritual experience, Andrew Harvey, meditation retreat",
   authors: [{ name: "Wild World Wanderers" }],
-  metadataBase: new URL('https://wild-world-wanderers.vercel.app'),
   openGraph: {
-    title: "Wild World Wanderers | Transformative Nature Journeys",
-    description: "Experience transformative journeys in the wild beauty of Kashmir, guided by ancient wisdom and spiritual practices. Reconnect with nature and yourself.",
-    url: "https://wild-world-wanderers.vercel.app",
+    title: "Kashmir's Spiritual Meditation Journeys | Wild World Wanderers",
+    description:
+      "Discover transformative spiritual meditation journeys in the mystical beauty of Kashmir. Guided retreats and experiences for inner healing and awakening.",
+    url: "https://www.wildworldwanderers.com",
     siteName: "Wild World Wanderers",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Wild World Wanderers",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wild World Wanderers | Transformative Nature Journeys",
-    description: "Experience transformative journeys in the wild beauty of Kashmir, guided by ancient wisdom and spiritual practices. Reconnect with nature and yourself.",
-    images: ["/images/og-image.jpg"],
+    title: "Kashmir's Spiritual Meditation Journeys | Wild World Wanderers",
+    description:
+      "Discover transformative spiritual meditation journeys in the mystical beauty of Kashmir. Guided retreats and experiences for inner healing and awakening.",
+    creator: "@wildworldwanderers",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://www.wildworldwanderers.com",
   },
   icons: {
-    icon: [
-      { url: "/favicon.svg" }
-    ],
-    apple: "/favicon.svg",
+    icon: "/favicon.svg",
+    apple: "/apple-touch-icon.png",
   },
+  manifest: "/site.webmanifest",
+  viewport: "width=device-width, initial-scale=1",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#050505" },
+    { media: "(prefers-color-scheme: light)", color: "#050505" },
+  ],
 };
 
 export default function RootLayout({
@@ -58,10 +54,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-black-950 scroll-smooth">
-      <body className={`${inter.className} min-h-screen flex flex-col`}>
-        <main className="flex-grow">
-          {children}
-        </main>
+      <body className={cn(inter.className, "overflow-x-hidden")}>
+        {children}
       </body>
     </html>
   );

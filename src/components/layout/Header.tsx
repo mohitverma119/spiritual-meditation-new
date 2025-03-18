@@ -40,7 +40,7 @@ export default function Header() {
           : "bg-transparent py-6"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -108,9 +108,9 @@ export default function Header() {
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-black-900/95 backdrop-blur-lg border-t border-gold-500/20"
+          className="md:hidden bg-black-900/95 backdrop-blur-lg border-t border-gold-500/20 overflow-hidden w-full"
         >
-          <div className="container py-6 flex flex-col space-y-4">
+          <div className="container mx-auto py-6 flex flex-col space-y-4 px-4">
             {navItems.map((item) => (
               <Link
                 key={item.name}
